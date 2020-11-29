@@ -1,0 +1,38 @@
+{
+  "Actions": [
+    {
+      "Icon": "Images/repositoryWatcherAction",
+      "Name": "Repository Watcher",
+      "States": [
+        {
+          "Image": "Images/repositoryWatcherKey",
+          "TitleAlignment": "middle",
+          "FontSize": "12"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Tracks new issues or pull requests in a GitHub repository",
+      "UUID": "com.victorgrycuk.repositorywatcher",
+      "PropertyInspectorPath": "PropertyInspector/RepositoryWatcherPI.html"
+    }
+  ],
+  "Author": "Victor Grycuk",
+  "Name": "Repository Watcher",
+  "Description": "Tracks new issues or pull requests in a GitHub repository.",
+  "Icon": "Images/repositoryWatcherKey",
+  "URL": "https://github.com/VictorGrycuk/streamdeck-repository-watcher",
+  "Version": "0.1",
+  "CodePath": "RepositoryWatcher",
+  "Category": "Repository Watcher",
+  "CategoryIcon": "Images/repositoryWatcherCategory",
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "4.3"
+  }
+}
