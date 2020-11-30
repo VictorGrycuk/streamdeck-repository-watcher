@@ -1,4 +1,4 @@
-﻿using RepositoryWatcher.Helpers;
+﻿using RepositoryWatcher.Helpers.FluentGitHub;
 using System;
 using System.Drawing;
 
@@ -18,6 +18,9 @@ namespace RepositoryWatcher.Models
                         .WithBaseBranch(Settings.BaseBranch)
                         .WithHead(Settings.Head)
                         .WithState(Settings.State)
+                        .WithPageCount(Settings.PageCount)
+                        .WithPageSize(Settings.PageSize)
+                        .WithStartPage(Settings.StartPage)
                     .GetResult()
                     .Count;
         }

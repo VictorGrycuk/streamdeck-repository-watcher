@@ -1,4 +1,4 @@
-﻿using RepositoryWatcher.Helpers;
+﻿using RepositoryWatcher.Helpers.FluentGitHub;
 using System;
 using System.Drawing;
 
@@ -22,6 +22,9 @@ namespace RepositoryWatcher.Models
                         .WithMilestone(Settings.MentionedUser)
                         .WithState(Settings.State)
                         .Since(dateTimeOffset)
+                        .WithPageCount(Settings.PageCount)
+                        .WithPageSize(Settings.PageSize)
+                        .WithStartPage(Settings.StartPage)
                     .GetResult()
                     .Count;
         }

@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace RepositoryWatcher.Helpers
+namespace RepositoryWatcher.Helpers.FluentGitHub
 {
+    // This class is far from optimal, but it will do for the moment
     internal sealed class FluentGitHubSDK :
         IFromRepository,
         IWithOwner,
@@ -13,22 +14,17 @@ namespace RepositoryWatcher.Helpers
     {
         private string repositoryName;
         private string repositoryOwner;
-        private readonly GitHubClient client;
+        private readonly GitHubClient client = new GitHubClient(new ProductHeaderValue("StreamDeck-GitHubWatcher"));
+        private readonly ApiOptions apiOptions = new ApiOptions { PageCount = 1, PageSize = 30, StartPage = 1 };
         private RepositoryIssueRequest repositoryIssueRequest;
         private PullRequestRequest pullRequestRequest;
 
         private FluentGitHubSDK(string token)
         {
-            client = new GitHubClient(new ProductHeaderValue("StreamDeck-GitHubWatcher"))
-            {
-                Credentials = new Credentials(token)
-            };
+            client.Credentials = new Credentials(token);
         }
         
-        private FluentGitHubSDK()
-        {
-            client = new GitHubClient(new ProductHeaderValue("StreamDeck-GitHubWatcher"));
-        }
+        private FluentGitHubSDK() { }
 
         internal static IFromRepository WithCredentials(string token) => !string.IsNullOrWhiteSpace(token) ? new FluentGitHubSDK(token) : new FluentGitHubSDK();
         internal static IFromRepository WithoutCredentials() => new FluentGitHubSDK();
@@ -136,7 +132,8 @@ namespace RepositoryWatcher.Helpers
                     .GetAllForRepository(
                         repositoryOwner,
                         repositoryName,
-                        repositoryIssueRequest)
+                        repositoryIssueRequest,
+                        apiOptions)
                     .Result;
         }
 
@@ -177,6 +174,27 @@ namespace RepositoryWatcher.Helpers
             return this;
         }
 
+        public IWithIssueOptions WithPageCount(int pageCount)
+        {
+            apiOptions.PageCount = pageCount;
+
+            return this;
+        }
+
+        public IWithIssueOptions WithPageSize(int pageSize)
+        {
+            apiOptions.PageSize = pageSize;
+
+            return this;
+        }
+
+        public IWithIssueOptions WithStartPage(int startPage)
+        {
+            apiOptions.StartPage = startPage;
+
+            return this;
+        }
+
         IReadOnlyList<PullRequest> IWithPullRequestOptions.GetResult()
         {
             return client
@@ -184,8 +202,30 @@ namespace RepositoryWatcher.Helpers
                     .GetAllForRepository(
                         repositoryOwner,
                         repositoryName,
-                        pullRequestRequest)
+                        pullRequestRequest,
+                        apiOptions)
                     .Result;
+        }
+
+        IWithPullRequestOptions IWithPullRequestOptions.WithPageCount(int pageCount)
+        {
+            apiOptions.PageCount = pageCount;
+
+            return this;
+        }
+
+        IWithPullRequestOptions IWithPullRequestOptions.WithPageSize(int pageSize)
+        {
+            apiOptions.PageSize = pageSize;
+
+            return this;
+        }
+
+        IWithPullRequestOptions IWithPullRequestOptions.WithStartPage(int startPage)
+        {
+            apiOptions.StartPage = startPage;
+
+            return this;
         }
     }
 
@@ -199,38 +239,14 @@ namespace RepositoryWatcher.Helpers
         IGetResources WithOwner(string repositoryOwner);
     }
 
-    interface IGetResources
-    {
-        IWithIssueOptions GetIssues();
-        IWithPullRequestOptions GetPullRequests();
-    }
-
     interface IIntermediate
     {
         IWithIssueOptions FilteredBy(string filter);
     }
 
-    interface IWithIssueOptions
+    interface IGetResources
     {
-        IWithIssueOptions WithAssignee(string assigneeName);
-        IWithIssueOptions WithCreator(string creatorName);
-        IWithIssueOptions FilteredBy(IssueFilter issueFilter);
-        IWithIssueOptions WithMentionedUser(string mentionedUser);
-        IWithIssueOptions WithMilestone(string milestone);
-        IWithIssueOptions Since(DateTimeOffset since);
-        IWithIssueOptions SortBy(IssueSort sortProperty);
-        IWithIssueOptions WithSortDirection(SortDirection direction);
-        IWithIssueOptions WithState(ItemStateFilter state);
-        IReadOnlyList<Issue> GetResult();
-    }
-
-    interface IWithPullRequestOptions
-    {
-        IWithPullRequestOptions WithBaseBranch(string baseBranchName);
-        IWithPullRequestOptions WithHead(string head);
-        IWithPullRequestOptions SortBy(PullRequestSort sortProperty);
-        IWithPullRequestOptions WithSortDirection(SortDirection direction);
-        IWithPullRequestOptions WithState(ItemStateFilter state);
-        IReadOnlyList<PullRequest> GetResult();
+        IWithIssueOptions GetIssues();
+        IWithPullRequestOptions GetPullRequests();
     }
 }

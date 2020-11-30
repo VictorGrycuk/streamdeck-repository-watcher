@@ -19,6 +19,9 @@ namespace RepositoryWatcher
         [JsonProperty(PropertyName = "interval")]
         public int Interval { get; set; }
 
+        [JsonProperty(PropertyName = "initialOffset")]
+        public int InitialOffset { get; set; }
+
         [JsonProperty(PropertyName = "isEnabled")]
         public bool IsEnabled { get; set; }
 
@@ -39,6 +42,15 @@ namespace RepositoryWatcher
 
         [JsonProperty(PropertyName = "head")]
         public string Head { get; set; }
+
+        [JsonProperty(PropertyName = "pageCount")]
+        public int PageCount { get; set; }
+
+        [JsonProperty(PropertyName = "pageSize")]
+        public int PageSize { get; set; }
+
+        [JsonProperty(PropertyName = "startPage")]
+        public int StartPage { get; set; }
 
         [JsonProperty(PropertyName = "type")]
         public string SelectedResourceType { get; set; }
@@ -61,7 +73,7 @@ namespace RepositoryWatcher
         public ItemStateFilter State { get; set; }
     }
 
-    internal enum ResourceType
+    enum ResourceType
     {
         ISSUE,
         PULL_REQUEST
