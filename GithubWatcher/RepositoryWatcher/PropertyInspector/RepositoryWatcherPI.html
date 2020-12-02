@@ -10,13 +10,13 @@
     <script src="sdtools.common.js"></script>
     <script src="RepositoryWatcherPI.js"></script>
 </head>
-<body>
+<body onload="showDiv()">
     <div class="sdpi-wrapper">
         <div class="sdpi-item" id="dvType">
             <div class="sdpi-item-label">Select Type</div>
-            <select class="sdpi-item-value select sdProperty" id="type" oninput="setSettings()" onchange="showDiv('issueOptions', this)">
-               <option value="issue">Issues</option>
-               <option value="pull_request">Pull Requests</option>
+            <select class="sdpi-item-value select sdProperty" id="type" oninput="setSettings()" onchange="showDiv()">
+                <option value="issue">Issues</option>
+                <option value="pull_request">Pull Requests</option>
             </select>
         </div>
         <div class="sdpi-item" id="dvToken">
@@ -30,6 +30,10 @@
         <div class="sdpi-item" id="dvInterval">
             <div class="sdpi-item-label">Refresh Interval</div>
             <input class="sdpi-item-value sdProperty" value="30" id="interval" placeholder="in minutes" required pattern="\d+" oninput="setSettings()">
+        </div>
+        <div class="sdpi-item" id="dvInitialOffset">
+            <div class="sdpi-item-label">Initial Offset (days)</div>
+            <input class="sdpi-item-value sdProperty" value="1" id="initialOffset" required pattern="\d+" oninput="setSettings()">
         </div>
         <div type="checkbox" class="sdpi-item" id="crosshair">
             <div class="sdpi-item-label">Enabled</div>
@@ -61,11 +65,11 @@
             <div class="sdpi-item" id="dvFilterBy">
                 <div class="sdpi-item-label">Filter By</div>
                 <select class="sdpi-item-value select sdProperty" id="filterBy" oninput="setSettings()">
-                   <option value="all">All</option>
-                   <option value="assigned">Assigned</option>
-                   <option value="created">Created</option>
-                   <option value="mentioned">Mentioned</option>
-                   <option value="subscribed">Subscribed</option>
+                    <option value="all">All</option>
+                    <option value="assigned">Assigned</option>
+                    <option value="created">Created</option>
+                    <option value="mentioned">Mentioned</option>
+                    <option value="subscribed">Subscribed</option>
                 </select>
             </div>
         </div>
@@ -88,6 +92,18 @@
                     <option value="open">Open</option>
                     <option value="closed">Closed</option>
                 </select>
+            </div>
+            <div class="sdpi-item" id="dvPageCount">
+                <div class="sdpi-item-label">Page Count</div>
+                <input class="sdpi-item-value sdProperty" value="1" id="pageCount" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvPageSize">
+                <div class="sdpi-item-label">Page Size</div>
+                <input class="sdpi-item-value sdProperty" value="30" id="pageSize" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvStartPage">
+                <div class="sdpi-item-label">Start Page</div>
+                <input class="sdpi-item-value sdProperty" value="1" id="startPage" oninput="setSettings()">
             </div>
         </div>
     </div>

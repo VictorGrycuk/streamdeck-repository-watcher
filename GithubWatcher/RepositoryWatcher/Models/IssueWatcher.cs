@@ -1,4 +1,4 @@
-﻿using RepositoryWatcher.Helpers;
+﻿using RepositoryWatcher.Helpers.FluentGitHub;
 using System;
 using System.Drawing;
 
@@ -10,7 +10,7 @@ namespace RepositoryWatcher.Models
 
         private int GetResult(DateTimeOffset dateTimeOffset)
         {
-            return FluentGitHubSDK
+            return FluentGitHubAPI
                     .WithCredentials(Settings.Token)
                     .FromRepository(RepositoryName)
                     .WithOwner(RepositoryOwner)
@@ -22,6 +22,9 @@ namespace RepositoryWatcher.Models
                         .WithMilestone(Settings.MentionedUser)
                         .WithState(Settings.State)
                         .Since(dateTimeOffset)
+                        .WithPageCount(Settings.PageCount)
+                        .WithPageSize(Settings.PageSize)
+                        .WithStartPage(Settings.StartPage)
                     .GetResult()
                     .Count;
         }

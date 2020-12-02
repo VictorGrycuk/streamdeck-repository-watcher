@@ -11,8 +11,9 @@ namespace RepositoryWatcher
     [PluginActionId("com.victorgrycuk.repositorywatcher")]
     public class RepositoryWatcher : PluginBase
     {
-        private static PluginSettings settings;
+        private readonly PluginSettings settings;
         private readonly Timer Timer;
+        private DateTime dateTime = DateTime.Now;
 
         public RepositoryWatcher(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
@@ -28,7 +29,7 @@ namespace RepositoryWatcher
         private void UpdateKey(object sender, ElapsedEventArgs e)
         {
             var test = WatcherFactory.GetWatcher(settings);
-            var image = test.GetImage(new DateTimeOffset(DateTime.Now.Subtract(new TimeSpan(2, 0, 0, 0))));
+            var image = test.GetImage(dateTime);
             Connection.SetImageAsync(image);
         }
 
@@ -41,6 +42,11 @@ namespace RepositoryWatcher
         {
             try
             {
+                // It is necessary to "reset" the counter from when new items are counted
+                dateTime = DateTime.Now;
+                UpdateKey(null, null);
+
+                // We open the corresponding url
                 var url = settings.ResourceType == ResourceType.ISSUE
                     ? settings.RepositoryURL + "/issues"
                     : settings.RepositoryURL + "/pulls";
@@ -61,6 +67,7 @@ namespace RepositoryWatcher
                 Tools.AutoPopulateSettings(settings, payload.Settings);
                 UpdateSettingsEnum();
                 Timer.Interval = settings.Interval * 60000;
+                dateTime = dateTime.Subtract(new TimeSpan(settings.InitialOffset, 0, 0, 0));
 
                 if (settings.IsEnabled) Timer.Start();
                 else Timer.Stop();

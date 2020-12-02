@@ -8,9 +8,9 @@ namespace RepositoryWatcher.Models
         {
             switch (settings.ResourceType)
             {
-                case global::RepositoryWatcher.ResourceType.ISSUE:
+                case ResourceType.ISSUE:
                     return new IssueWatcher(settings);
-                case global::RepositoryWatcher.ResourceType.PULL_REQUEST:
+                case ResourceType.PULL_REQUEST:
                     return new PullRequestWatcher(settings);
                 default:
                     throw new NotImplementedException("Resource type not supported");
