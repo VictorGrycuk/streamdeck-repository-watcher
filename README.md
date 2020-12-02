@@ -104,5 +104,11 @@ According to the [GitHub documentation](https://docs.github.com/en/free-pro-team
 
 **However**, with this in mind, the implementation of the API for this plug in returns all the issues *without an associated pull request*.
 
+## My others Stream Deck plugins
+
+- **[KeePass for StreamDeck](https://github.com/VictorGrycuk/StreamDeck-KeePass)**
+- **[Color Picker](https://github.com/VictorGrycuk/streamdeck-color-picker)**
+- **[Magnifier](https://github.com/VictorGrycuk/streamdeck-magnifier)**
+
 ---
 The icons are modified version of *Repository iOS Glyph* and *Repository Fluent* at [Icon8](https://icons8.com/).
