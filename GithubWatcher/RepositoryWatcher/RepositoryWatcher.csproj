@@ -100,7 +100,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\FluentGitHub\FluentGitHubSDK.cs" />
+    <Compile Include="Helpers\FluentGitHub\FluentGitHubAPI.cs" />
     <Compile Include="Helpers\FluentGitHub\IIssue.cs" />
     <Compile Include="Helpers\FluentGitHub\IPullRequest.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />

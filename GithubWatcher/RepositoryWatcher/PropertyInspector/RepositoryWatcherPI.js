@@ -1,5 +1,6 @@
-﻿function showDiv(element)
+﻿function showDiv()
 {
+    const element = document.getElementById('type')
     if (element.value === "pull_request") {
         document.getElementById('issueOptions').style.display = 'none';
         document.getElementById('prOptions').style.display = 'block';

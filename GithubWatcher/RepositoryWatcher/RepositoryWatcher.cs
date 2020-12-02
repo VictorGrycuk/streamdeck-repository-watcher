@@ -11,7 +11,7 @@ namespace RepositoryWatcher
     [PluginActionId("com.victorgrycuk.repositorywatcher")]
     public class RepositoryWatcher : PluginBase
     {
-        private static PluginSettings settings;
+        private readonly PluginSettings settings;
         private readonly Timer Timer;
         private DateTime dateTime = DateTime.Now;
 
