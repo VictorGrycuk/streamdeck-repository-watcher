@@ -28,14 +28,14 @@ namespace RepositoryWatcher
 
         private void UpdateKey(object sender, ElapsedEventArgs e)
         {
-            var test = WatcherFactory.GetWatcher(settings);
-            var image = test.GetImage(dateTime);
+            var watcher = WatcherFactory.GetWatcher(settings);
+            var image = watcher.GetImage(dateTime);
             Connection.SetImageAsync(image);
         }
 
         public override void Dispose()
         {
-            throw new NotImplementedException();
+            Timer.Dispose();
         }
 
         public override void KeyPressed(KeyPayload payload)
