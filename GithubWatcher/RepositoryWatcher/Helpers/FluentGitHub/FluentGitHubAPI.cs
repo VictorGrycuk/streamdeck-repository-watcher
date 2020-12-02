@@ -1,11 +1,12 @@
 ﻿using Octokit;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RepositoryWatcher.Helpers.FluentGitHub
 {
     // This class is far from optimal, but it will do for the moment
-    internal sealed class FluentGitHubSDK :
+    internal sealed class FluentGitHubAPI :
         IFromRepository,
         IWithOwner,
         IGetResources,
@@ -19,15 +20,15 @@ namespace RepositoryWatcher.Helpers.FluentGitHub
         private RepositoryIssueRequest repositoryIssueRequest;
         private PullRequestRequest pullRequestRequest;
 
-        private FluentGitHubSDK(string token)
+        private FluentGitHubAPI(string token)
         {
             client.Credentials = new Credentials(token);
         }
         
-        private FluentGitHubSDK() { }
+        private FluentGitHubAPI() { }
 
-        internal static IFromRepository WithCredentials(string token) => !string.IsNullOrWhiteSpace(token) ? new FluentGitHubSDK(token) : new FluentGitHubSDK();
-        internal static IFromRepository WithoutCredentials() => new FluentGitHubSDK();
+        internal static IFromRepository WithCredentials(string token) => !string.IsNullOrWhiteSpace(token) ? new FluentGitHubAPI(token) : new FluentGitHubAPI();
+        internal static IFromRepository WithoutCredentials() => new FluentGitHubAPI();
 
         public IWithOwner FromRepository(string repositoryName)
         {
@@ -134,7 +135,9 @@ namespace RepositoryWatcher.Helpers.FluentGitHub
                         repositoryName,
                         repositoryIssueRequest,
                         apiOptions)
-                    .Result;
+                    .Result
+                    // Filter our those issues that are actually a pull request
+                    .Where(issue => issue.PullRequest == null).ToList();
         }
 
         public IWithPullRequestOptions WithBaseBranch(string baseBranchName)

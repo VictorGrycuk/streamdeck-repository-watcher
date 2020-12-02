@@ -10,7 +10,7 @@ namespace RepositoryWatcher.Models
 
         private int GetResult(DateTimeOffset dateTimeOffset)
         {
-            return FluentGitHubSDK
+            return FluentGitHubAPI
                     .WithCredentials(Settings.Token)
                     .FromRepository(RepositoryName)
                     .WithOwner(RepositoryOwner)

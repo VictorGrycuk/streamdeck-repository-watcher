@@ -14,7 +14,7 @@
     <div class="sdpi-wrapper">
         <div class="sdpi-item" id="dvType">
             <div class="sdpi-item-label">Select Type</div>
-            <select class="sdpi-item-value select sdProperty" id="type" oninput="setSettings()" onchange="showDiv('issueOptions', this)">
+            <select class="sdpi-item-value select sdProperty" id="type" oninput="setSettings()" onchange="showDiv(this)">
                 <option value="issue">Issues</option>
                 <option value="pull_request">Pull Requests</option>
             </select>
