@@ -14,6 +14,7 @@ namespace RepositoryWatcher
         private readonly PluginSettings settings;
         private readonly Timer Timer;
         private DateTime dateTime = DateTime.Now;
+        private IWatcher watcher;
 
         public RepositoryWatcher(SDConnection connection, InitialPayload payload) : base(connection, payload)
         {
@@ -28,9 +29,17 @@ namespace RepositoryWatcher
 
         private void UpdateKey(object sender, ElapsedEventArgs e)
         {
-            var watcher = WatcherFactory.GetWatcher(settings);
-            var image = watcher.GetImage(dateTime);
-            Connection.SetImageAsync(image);
+            try
+            {
+                watcher = WatcherFactory.GetWatcher(settings);
+                var image = watcher.GetImage(dateTime);
+                Connection.SetImageAsync(image);
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, ex.Message);
+                Connection.ShowAlert().Wait();
+            }
         }
 
         public override void Dispose()
@@ -47,10 +56,7 @@ namespace RepositoryWatcher
                 UpdateKey(null, null);
 
                 // We open the corresponding url
-                var url = settings.ResourceType == ResourceType.ISSUE
-                    ? settings.RepositoryURL + "/issues"
-                    : settings.RepositoryURL + "/pulls";
-                System.Diagnostics.Process.Start(url);
+                watcher.GoToRepository();
             }
             catch (Exception ex)
             {
@@ -82,10 +88,7 @@ namespace RepositoryWatcher
             }
         }
 
-        private Task SaveSettings()
-        {
-            return Connection.SetSettingsAsync(JObject.FromObject(settings));
-        }
+        private Task SaveSettings() => Connection.SetSettingsAsync(JObject.FromObject(settings));
 
         private void UpdateSettingsEnum()
         {

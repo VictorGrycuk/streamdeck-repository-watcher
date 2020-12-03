@@ -1,7 +1,9 @@
 ﻿using BarRaider.SdTools;
 using RepositoryWatcher.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace RepositoryWatcher.Models
 {
@@ -42,6 +44,27 @@ namespace RepositoryWatcher.Models
             img = ImageHelper.WriteOnImage(img, description, DescriptionLocation, DescriptionMaxLocation);
 
             return img;
+        }
+
+        protected List<T> ApplyCustomFilters<T>(List<T> items)
+        {
+            var lines = Settings.CustomFilters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var imports = lines[0].Split(',');
+            lines = lines.Skip(1).ToArray();
+
+            foreach (var filter in lines)
+            {
+                items = Filter(items, filter, imports);
+            }
+
+            return items;
+        }
+
+        private List<T> Filter<T>(List<T> items, string lambda, string[] imports)
+        {
+            var filterExpression = RoslynScripting.Evaluate<T>(new System.Reflection.Assembly[] { typeof(T).Assembly }, imports, lambda);
+
+            return items.Where(filterExpression).ToList();
         }
     }
 }

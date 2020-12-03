@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Octokit;
+using System.Collections.Generic;
 
 namespace RepositoryWatcher
 {
@@ -54,6 +55,9 @@ namespace RepositoryWatcher
 
         [JsonProperty(PropertyName = "type")]
         public string SelectedResourceType { get; set; }
+
+        [JsonProperty(PropertyName = "customFilters")]
+        public string CustomFilters { get; set; }
 
         public ResourceType ResourceType { get; set; }
 
