@@ -1,6 +1,7 @@
 ﻿using RepositoryWatcher.Helpers.FluentGitHub;
 using System;
 using System.Drawing;
+using System.Linq;
 
 namespace RepositoryWatcher.Models
 {
@@ -10,7 +11,7 @@ namespace RepositoryWatcher.Models
 
         private int GetResult(DateTimeOffset dateTimeOffset)
         {
-            return FluentGitHubAPI
+            var items = FluentGitHubAPI
                     .WithCredentials(Settings.Token)
                     .FromRepository(RepositoryName)
                     .WithOwner(RepositoryOwner)
@@ -21,8 +22,11 @@ namespace RepositoryWatcher.Models
                         .WithPageCount(Settings.PageCount)
                         .WithPageSize(Settings.PageSize)
                         .WithStartPage(Settings.StartPage)
-                    .GetResult()
-                    .Count;
+                    .GetResult();
+
+            items = ApplyCustomFilters(items.ToList());
+
+            return items.Count;
         }
 
         public Bitmap GetImage(DateTimeOffset dateTimeOffset)
@@ -31,6 +35,11 @@ namespace RepositoryWatcher.Models
             var img = SetResultAndDescription(result, GetDescription(result));
 
             return img;
+        }
+
+        public void GoToRepository()
+        {
+            System.Diagnostics.Process.Start(Settings.RepositoryURL + "/issues");
         }
 
         private static string GetDescription(int result)
