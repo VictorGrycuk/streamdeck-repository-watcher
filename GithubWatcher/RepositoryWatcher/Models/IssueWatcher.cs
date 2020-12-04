@@ -13,8 +13,8 @@ namespace RepositoryWatcher.Models
         {
             var items = FluentGitHubAPI
                     .WithCredentials(Settings.Token)
-                    .FromRepository(RepositoryName)
-                    .WithOwner(RepositoryOwner)
+                    .FromRepository(Repository.Name)
+                    .WithOwner(Repository.Owner)
                     .GetIssues()
                         .FilteredBy(Settings.FilterBy)
                         .WithAssignee(Settings.Assignee)
@@ -41,9 +41,9 @@ namespace RepositoryWatcher.Models
             return img;
         }
 
-        public void GoToRepository()
+        public string GetUrl()
         {
-            System.Diagnostics.Process.Start(Settings.RepositoryURL + "/issues");
+            return Repository.BaseUrl + "/issues";
         }
 
         private static string GetDescription(int result)

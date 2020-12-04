@@ -1,9 +1,7 @@
 ﻿using BarRaider.SdTools;
-using RepositoryWatcher.Models;
 using Newtonsoft.Json.Linq;
-using Octokit;
+using RepositoryWatcher.Models;
 using System;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace RepositoryWatcher
@@ -22,6 +20,7 @@ namespace RepositoryWatcher
                 ? PluginSettings.CreateDefaultSettings()
                 : payload.Settings.ToObject<PluginSettings>();
 
+            watcher = WatcherFactory.GetWatcher(settings);
             Timer = new Timer();
             Timer.AutoReset = true;
             Timer.Elapsed += new ElapsedEventHandler(UpdateKey);
@@ -31,7 +30,6 @@ namespace RepositoryWatcher
         {
             try
             {
-                watcher = WatcherFactory.GetWatcher(settings);
                 var image = watcher.GetImage(dateTime);
                 Connection.SetImageAsync(image);
             }
@@ -56,13 +54,12 @@ namespace RepositoryWatcher
                 UpdateKey(null, null);
 
                 // We open the corresponding url
-                watcher.GoToRepository();
+                System.Diagnostics.Process.Start(watcher.GetUrl());
             }
             catch (Exception ex)
             {
                 Logger.Instance.LogMessage(TracingLevel.ERROR, ex.Message);
                 Connection.ShowAlert().Wait();
-                throw;
             }
         }
 
@@ -71,39 +68,31 @@ namespace RepositoryWatcher
             try
             {
                 Tools.AutoPopulateSettings(settings, payload.Settings);
-                UpdateSettingsEnum();
-                Timer.Interval = settings.Interval * 60000;
+                settings.UpdateSettingsEnum();
+                watcher = WatcherFactory.GetWatcher(settings);
                 dateTime = dateTime.Subtract(new TimeSpan(settings.InitialOffset, 0, 0, 0));
-
-                if (settings.IsEnabled) Timer.Start();
-                else Timer.Stop();
-
+                
+                UpdateTimer();
                 SaveSettings();
             }
             catch (Exception ex)
             {
                 Logger.Instance.LogMessage(TracingLevel.ERROR, ex.Message);
                 Connection.ShowAlert().Wait();
-                throw;
             }
         }
 
-        private Task SaveSettings() => Connection.SetSettingsAsync(JObject.FromObject(settings));
-
-        private void UpdateSettingsEnum()
+        private void UpdateTimer()
         {
-            settings.State = ParseEnum<ItemStateFilter>(settings.SelectedState);
-            settings.FilterBy = ParseEnum<IssueFilter>(settings.SelectedFilterBy);
-            settings.ResourceType = ParseEnum<ResourceType>(settings.SelectedResourceType);
-            settings.PullRequestSortBy = ParseEnum<PullRequestSort>(settings.SelectedPullRequestSortBy);
+            if (settings.Interval < 1)
+                throw new ArgumentException("The interval configuration cannot be lower than 1");
+
+            Timer.Interval = settings.Interval * 60000;
+            if (settings.IsEnabled) Timer.Start();
+            else Timer.Stop();
         }
 
-        private TEnum ParseEnum<TEnum>(string text) where TEnum : struct, IConvertible
-        {
-            _ = Enum.TryParse(text, true, out TEnum result);
-
-            return result;
-        }
+        private void SaveSettings() => Connection.SetSettingsAsync(JObject.FromObject(settings));
         
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
 

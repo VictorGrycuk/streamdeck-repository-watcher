@@ -117,10 +117,11 @@
     <Compile Include="Helpers\FluentGitHub\IIssue.cs" />
     <Compile Include="Helpers\FluentGitHub\IPullRequest.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Helpers\RoslynScripting.cs" />
+    <Compile Include="Models\CustomFilter.cs" />
     <Compile Include="Models\IssueWatcher.cs" />
     <Compile Include="Models\IWatcher.cs" />
     <Compile Include="Models\PullRequestWatcher.cs" />
+    <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Watcher.cs" />
     <Compile Include="PluginSettings.cs" />
     <Compile Include="Program.cs" />

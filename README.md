@@ -1,7 +1,4 @@
 # Repository Watcher for StreamDeck
-
-> :warning: This is still a work in progress
-
 ## Description
 This is a plug in for [StreamDeck](https://www.elgato.com/en/gaming/stream-deck) that will monitor the count of issues or pull request of a given GitHub repository.
 
@@ -43,8 +40,8 @@ This was done using BarRaider's [Stream Deck Tools](https://github.com/BarRaider
 
 All of these are optional filters that can be stacked.
 
-- **Initial Offset.** When first launching the plug in, it will retrieve a certain amount of information from the repository. The offset specifies how far back it will retrieve information, expressed in days. Default is `2`.
-  - **Note:** When pressing the key, the offset will become the date time you pressed the key. The logic behind this is that after opening the website, you have already seen the new repository updates, therefore it will start counting since you last saw the repository. At the moment, this is **not saved** after closing the StreamDeck app
+- **Initial Offset.** When first launching the plug in, it will retrieve a certain amount of information from the repository. The offset specifies how far back it will retrieve information the first time, expressed in days. Default is `2`.
+  - **Note:** After it checks the repository, that date time will become the new offset, same as when pressing the key. The logic behind this is that after opening the website, you have already seen the new repository updates, therefore it will start counting since you last saw the repository.
 
 - **Issue Assignee.** Will return the amount of issues with a given assignee
 - **Issue Creator.** Will return the amount of issues that were created by a given user
@@ -97,7 +94,7 @@ If you want to have a better control on what is being returned and counted, use 
 
 #### Every pull request an issue, but not every issue is a pull request
 
-A caveat of the GitHub API, the `GetIssues` method not only return issues but may return pull requests as well.
+A caveat of the GitHub API, the `GetIssues` method not only return issues but may also return pull requests as well.
 
 According to the [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/rest/reference/issues#list-issues-assigned-to-the-authenticated-user):
 

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Octokit;
+using System;
 using System.Collections.Generic;
 
 namespace RepositoryWatcher
@@ -75,6 +76,21 @@ namespace RepositoryWatcher
         public string SelectedState { get; set; }
 
         public ItemStateFilter State { get; set; }
+
+        public void UpdateSettingsEnum()
+        {
+            State = ParseEnum<ItemStateFilter>(SelectedState);
+            FilterBy = ParseEnum<IssueFilter>(SelectedFilterBy);
+            ResourceType = ParseEnum<ResourceType>(SelectedResourceType);
+            PullRequestSortBy = ParseEnum<PullRequestSort>(SelectedPullRequestSortBy);
+        }
+
+        private TEnum ParseEnum<TEnum>(string text) where TEnum : struct, IConvertible
+        {
+            _ = Enum.TryParse(text, true, out TEnum result);
+
+            return result;
+        }
     }
 
     enum ResourceType
