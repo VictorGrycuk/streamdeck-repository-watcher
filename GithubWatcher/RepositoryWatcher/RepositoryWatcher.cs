@@ -2,7 +2,6 @@
 using Newtonsoft.Json.Linq;
 using RepositoryWatcher.Models;
 using System;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace RepositoryWatcher
