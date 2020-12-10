@@ -48,16 +48,7 @@ namespace RepositoryWatcher
 
         public override void KeyPressed(KeyPayload payload)
         {
-            try
-            {
-                UpdateKey(null, null);
-                dateTime = DateTime.Now;
-            }
-            catch (Exception ex)
-            {
-                Logger.Instance.LogMessage(TracingLevel.ERROR, ex.Message);
-                Connection.ShowAlert().Wait();
-            }
+            dateTime = DateTime.Now;
         }
 
         public override void ReceivedSettings(ReceivedSettingsPayload payload)
@@ -105,6 +96,8 @@ namespace RepositoryWatcher
                     // We open the corresponding url
                     System.Diagnostics.Process.Start(watcher.GetUrl());
                 }
+
+                UpdateKey(null, null);
             }
             catch (Exception ex)
             {
