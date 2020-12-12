@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui,viewport-fit=cover">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <title>Repository Watcher Settings</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="sdtools.common.js"></script>
+    <script src="RepositoryWatcherPI.js"></script>
+</head>
+<body onload="showDiv()">
+    <div class="sdpi-wrapper">
+        <details class="message info">
+            <summary>You can find the documentation at <span class="linkspan" onclick="openWebsite()">the repo</span> </summary>
+        </details>
+        <div class="sdpi-item" id="dvType">
+            <div class="sdpi-item-label">Select Type</div>
+            <select class="sdpi-item-value select sdProperty" id="type" oninput="setSettings()" onchange="showDiv()">
+                <option value="issue">Issues</option>
+                <option value="pull_request">Pull Requests</option>
+            </select>
+        </div>
+        <div class="sdpi-item" id="dvToken">
+            <div class="sdpi-item-label">GitHub Personal Token</div>
+            <input class="sdpi-item-value sdProperty" value="" id="token" oninput="setSettings()" type="password">
+        </div>
+        <div class="sdpi-item" id="dvURL">
+            <div class="sdpi-item-label">Repository URL</div>
+            <input class="sdpi-item-value sdProperty" value="" id="url" oninput="setSettings()">
+        </div>
+        <div class="sdpi-item" id="dvInterval">
+            <div class="sdpi-item-label">Refresh Interval</div>
+            <input class="sdpi-item-value sdProperty" value="30" id="interval" placeholder="in minutes" required pattern="\d+" oninput="setSettings()">
+        </div>
+        <div class="sdpi-item" id="dvInitialOffset">
+            <div class="sdpi-item-label">Initial Offset (days)</div>
+            <input class="sdpi-item-value sdProperty" value="1" id="initialOffset" required pattern="\d+" oninput="setSettings()">
+        </div>
+        <div type="checkbox" class="sdpi-item" id="crosshair">
+            <div class="sdpi-item-label">Enabled</div>
+            <div class="sdpi-item-value">
+                <div class="sdpi-item-child">
+                    <input id="isEnabled" class="sdProperty sdCheckbox" type="checkbox" name="isEnabled" oninput="setSettings()">
+                    <label for="isEnabled" class="sdpi-item-label"><span></span></label>
+                </div>
+            </div>
+        </div>
+        <div type="group" class="sdpi-item" id="issueOptions" style="display: block">
+            <div class="sdpi-item-label">Issue filtering options</div>
+            <div class="sdpi-item" id="dvIssueAssignee">
+                <div class="sdpi-item-label">Issue Assignee</div>
+                <input class="sdpi-item-value sdProperty" value="" id="issueAssignee" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvIssueCreator">
+                <div class="sdpi-item-label">Issue Creator</div>
+                <input class="sdpi-item-value sdProperty" value="" id="issueCreator" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvMentionedUser">
+                <div class="sdpi-item-label">Mentioned User</div>
+                <input class="sdpi-item-value sdProperty" value="" id="mentionedUser" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvMilestone">
+                <div class="sdpi-item-label">Milestone</div>
+                <input class="sdpi-item-value sdProperty" value="" id="milestone" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvFilterBy">
+                <div class="sdpi-item-label">Filter By</div>
+                <select class="sdpi-item-value select sdProperty" id="filterBy" oninput="setSettings()">
+                    <option value="all">All</option>
+                    <option value="assigned">Assigned</option>
+                    <option value="created">Created</option>
+                    <option value="mentioned">Mentioned</option>
+                    <option value="subscribed">Subscribed</option>
+                </select>
+            </div>
+        </div>
+        <div type="group" class="sdpi-item" id="prOptions" style="display: none">
+            <div class="sdpi-item-label">PR filtering options</div>
+            <div class="sdpi-item" id="dvBaseBranch">
+                <div class="sdpi-item-label">Base Branch</div>
+                <input class="sdpi-item-value sdProperty" value="" id="baseBranch" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvHead">
+                <div class="sdpi-item-label">Head</div>
+                <input class="sdpi-item-value sdProperty" value="" id="head" oninput="setSettings()">
+            </div>
+        </div>
+        <div type="group" class="sdpi-item" id="sharedOptions">
+            <div class="sdpi-item" id="dvState">
+                <div class="sdpi-item-label">State</div>
+                <select class="sdpi-item-value select sdProperty" id="state" oninput="setSettings()">
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+            </div>
+            <div class="sdpi-item" id="dvPageCount">
+                <div class="sdpi-item-label">Page Count</div>
+                <input class="sdpi-item-value sdProperty" value="1" id="pageCount" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvPageSize">
+                <div class="sdpi-item-label">Page Size</div>
+                <input class="sdpi-item-value sdProperty" value="30" id="pageSize" oninput="setSettings()">
+            </div>
+            <div class="sdpi-item" id="dvStartPage">
+                <div class="sdpi-item-label">Start Page</div>
+                <input class="sdpi-item-value sdProperty" value="1" id="startPage" oninput="setSettings()">
+            </div>
+            <div type="textarea" class="sdpi-item" id="dvCustomFilters">
+                <div class="sdpi-item-label">Custom Filters</div>
+                <span class="sdpi-item-value textarea">
+                    <textarea type="textarea" class="sdProperty" oninput="setSettings()" id="customFilters" wrap="off"></textarea>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
