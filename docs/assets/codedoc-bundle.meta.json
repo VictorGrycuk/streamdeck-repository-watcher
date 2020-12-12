@@ -1,0 +1,126 @@
+{
+  "init": [
+    {
+      "name": "initJssCs",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/setup-jss.js",
+      "hash": "FYMeA8nzA/8KO++K1e0zOg=="
+    },
+    {
+      "name": "installTheme",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/content/theme.ts",
+      "hash": "2jWQZfhfFubtpAOPmi/OTg=="
+    },
+    {
+      "name": "codeSelection",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/selection.js",
+      "hash": "dSHEwIKPGDTYWKN/gTDwzA=="
+    },
+    {
+      "name": "sameLineLengthInCodes",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/same-line-length.js",
+      "hash": "1C0Ntl25WqWMwK1gMt8wdA=="
+    },
+    {
+      "name": "initHintBox",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/line-hint/index.js",
+      "hash": "LkxkI3d8HxNTXJqC9sMI2A=="
+    },
+    {
+      "name": "initCodeLineRef",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/line-ref/index.js",
+      "hash": "b1c9AvE8woMrTaE76UpwAg=="
+    },
+    {
+      "name": "initSmartCopy",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/smart-copy.js",
+      "hash": "SZ4BRT96R9dRO3W8+aiHoQ=="
+    },
+    {
+      "name": "copyHeadings",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/heading/copy-headings.js",
+      "hash": "XrAsbWG2Ps+BQzZPiF5prw=="
+    },
+    {
+      "name": "contentNavHighlight",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/contentnav/highlight.js",
+      "hash": "oBBNPMQLuCRTkGf+NfjZRg=="
+    },
+    {
+      "name": "loadDeferredIFrames",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/deferred-iframe.js",
+      "hash": "UslXQH+L4endIKzq1fbWhw=="
+    },
+    {
+      "name": "smoothLoading",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/smooth-loading.js",
+      "hash": "/r28rEc1v5cu1RwIt4X8Cg=="
+    },
+    {
+      "name": "tocHighlight",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/toc-highlight.js",
+      "hash": "tjKsOIJk2dd6IyYT7yh1Fg=="
+    },
+    {
+      "name": "postNavSearch",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/search/post-nav/index.js",
+      "hash": "+EZ1fbr30yoVvs7wRUFb9w=="
+    },
+    {
+      "name": "copyLineLinks",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/line-links/copy-line-link.js",
+      "hash": "ZKuXZM4TlAZ2OmZ7gwapiw=="
+    },
+    {
+      "name": "gatherFootnotes",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/footnote/gather-footnotes.js",
+      "hash": "erA/Lg6JDWBvaWlvmlQVfw=="
+    },
+    {
+      "name": "reloadOnChange",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/serve/reload.js",
+      "hash": "74ZXAk3Bjv2kld/gphcmVg=="
+    }
+  ],
+  "components": [
+    {
+      "name": "ToCPrevNext",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/prevnext/index.js",
+      "hash": "MpIzQdT+HYVbLbOKcRiu0Q=="
+    },
+    {
+      "name": "GithubSearch",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/misc/github/search.js",
+      "hash": "Zgjl9qvaVE7qz57I0g9TMw=="
+    },
+    {
+      "name": "ToCToggle",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/toggle/index.js",
+      "hash": "83/mw7glVA9261Y4RPm4FA=="
+    },
+    {
+      "name": "DarkModeSwitch",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/darkmode/index.js",
+      "hash": "z/CwTsAaY6SXvQUBYphTMA=="
+    },
+    {
+      "name": "ConfigTransport",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/config.js",
+      "hash": "9t+g/w2fRqr4dKtTrZSIyA=="
+    },
+    {
+      "name": "TabSelector",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/tabs/selector.js",
+      "hash": "DWu+YT0hV/xlV18UD6yoYA=="
+    },
+    {
+      "name": "CollapseControl",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/collapse/collapse-control.js",
+      "hash": "OVSglutkgnTQly+5q2nX0Q=="
+    }
+  ],
+  "renderer": {
+    "name": "getRenderer",
+    "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/renderer.js",
+    "hash": "5VndbQFumnckhscAqKpOAw=="
+  }
+}

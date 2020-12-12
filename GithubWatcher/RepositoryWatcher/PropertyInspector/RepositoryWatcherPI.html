@@ -12,6 +12,9 @@
 </head>
 <body onload="showDiv()">
     <div class="sdpi-wrapper">
+        <details class="message info">
+            <summary>You can find the documentation at <span class="linkspan" onclick="openWebsite()">the repo</span> </summary>
+        </details>
         <div class="sdpi-item" id="dvType">
             <div class="sdpi-item-label">Select Type</div>
             <select class="sdpi-item-value select sdProperty" id="type" oninput="setSettings()" onchange="showDiv()">
