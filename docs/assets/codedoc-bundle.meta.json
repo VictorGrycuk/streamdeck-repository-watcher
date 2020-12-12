@@ -74,11 +74,6 @@
       "name": "gatherFootnotes",
       "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/footnote/gather-footnotes.js",
       "hash": "erA/Lg6JDWBvaWlvmlQVfw=="
-    },
-    {
-      "name": "reloadOnChange",
-      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/serve/reload.js",
-      "hash": "74ZXAk3Bjv2kld/gphcmVg=="
     }
   ],
   "components": [
@@ -86,6 +81,11 @@
       "name": "ToCPrevNext",
       "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/prevnext/index.js",
       "hash": "MpIzQdT+HYVbLbOKcRiu0Q=="
+    },
+    {
+      "name": "CollapseControl",
+      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/collapse/collapse-control.js",
+      "hash": "OVSglutkgnTQly+5q2nX0Q=="
     },
     {
       "name": "GithubSearch",
@@ -106,16 +106,6 @@
       "name": "ConfigTransport",
       "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/config.js",
       "hash": "9t+g/w2fRqr4dKtTrZSIyA=="
-    },
-    {
-      "name": "TabSelector",
-      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/tabs/selector.js",
-      "hash": "DWu+YT0hV/xlV18UD6yoYA=="
-    },
-    {
-      "name": "CollapseControl",
-      "filename": "C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/collapse/collapse-control.js",
-      "hash": "OVSglutkgnTQly+5q2nX0Q=="
     }
   ],
   "renderer": {

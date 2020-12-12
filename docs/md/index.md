@@ -9,7 +9,7 @@ Welcome to the documentation for the repository watcher for the StreamDeck!
 >
 > > :Button icon=true, label=chat, url=https://github.com/VictorGrycuk/streamdeck-repository-watcher/discussions
 
-<div style="text-align:center"><img src=".\images\issues-watcher.jpg" /></div>
+<div style="text-align:center"><img src="/docs/assets/issues-watcher.jpg" /></div>
 
 This is a plug in for [StreamDeck](https://www.elgato.com/en/gaming/stream-deck) that will monitor the count of issues or pull request of a given **GitHub** repository. It can be configured to count of either issues or pull requests that meet the filter criteria.
 
