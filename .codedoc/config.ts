@@ -6,7 +6,7 @@ import { theme } from './theme';
 export const config = /*#__PURE__*/configuration({
   theme,
   dest: {
-    namespace: '/codedoc-boilerplate'
+    namespace: '/streamdeck-repository-watcher'
   },
   page: {
     title: {

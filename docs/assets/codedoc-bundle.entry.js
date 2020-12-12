@@ -14,23 +14,20 @@ import { tocHighlight } from 'C:/Repositories/streamdeck-repository-watcher/.cod
 import { postNavSearch } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/search/post-nav/index.js';postNavSearch();
 import { copyLineLinks } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/code/line-links/copy-line-link.js';copyLineLinks();
 import { gatherFootnotes } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/footnote/gather-footnotes.js';gatherFootnotes();
-import { reloadOnChange } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/serve/reload.js';reloadOnChange();
 import { ToCPrevNext } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/prevnext/index.js';
+import { CollapseControl } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/collapse/collapse-control.js';
 import { GithubSearch } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/misc/github/search.js';
 import { ToCToggle } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/page/toc/toggle/index.js';
 import { DarkModeSwitch } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/darkmode/index.js';
 import { ConfigTransport } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/transport/config.js';
-import { TabSelector } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/tabs/selector.js';
-import { CollapseControl } from 'C:/Repositories/streamdeck-repository-watcher/.codedoc/node_modules/@codedoc/core/dist/es5/components/collapse/collapse-control.js';
 
 const components = {
   'MpIzQdT+HYVbLbOKcRiu0Q==': ToCPrevNext,
+  'OVSglutkgnTQly+5q2nX0Q==': CollapseControl,
   'Zgjl9qvaVE7qz57I0g9TMw==': GithubSearch,
   '83/mw7glVA9261Y4RPm4FA==': ToCToggle,
   'z/CwTsAaY6SXvQUBYphTMA==': DarkModeSwitch,
-  '9t+g/w2fRqr4dKtTrZSIyA==': ConfigTransport,
-  'DWu+YT0hV/xlV18UD6yoYA==': TabSelector,
-  'OVSglutkgnTQly+5q2nX0Q==': CollapseControl
+  '9t+g/w2fRqr4dKtTrZSIyA==': ConfigTransport
 };
 
 const renderer = getRenderer();
