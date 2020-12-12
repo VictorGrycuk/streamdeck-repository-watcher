@@ -1,5 +1,5 @@
 import { configuration } from '@codedoc/core';
-
+import { googleAnalytics } from './ga-plugin';
 import { theme } from './theme';
 
 
@@ -18,9 +18,9 @@ export const config = /*#__PURE__*/configuration({
       user: 'VictorGrycuk',
       repo: 'streamdeck-repository-watcher',
       action: 'Follow',
-    },
-    bmc: {
-      buttonPath: ""
     }
-  }
+  },
+  plugins: [
+    googleAnalytics('UA-60026499-1')
+  ],
 });
