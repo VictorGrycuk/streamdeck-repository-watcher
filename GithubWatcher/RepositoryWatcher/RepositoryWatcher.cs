@@ -1,7 +1,9 @@
 ﻿using BarRaider.SdTools;
 using Newtonsoft.Json.Linq;
 using RepositoryWatcher.Models;
+using RepositoryWatcher.Properties;
 using System;
+using System.Drawing;
 using System.Timers;
 
 namespace RepositoryWatcher
@@ -31,6 +33,8 @@ namespace RepositoryWatcher
         {
             try
             {
+                var processing = (Image)Resources.ResourceManager.GetObject("processing");
+                Connection.SetImageAsync(processing).Wait();
                 var image = watcher.GetImage(initialDateOffset);
                 Connection.SetImageAsync(image);
             }

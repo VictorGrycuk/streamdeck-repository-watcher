@@ -184,7 +184,7 @@ function openWebsite() {
         const json = {
             'event': 'openUrl',
             'payload': {
-                'url': 'https://BarRaider.github.io'
+                'url': 'https://victorgrycuk.github.io/streamdeck-repository-watcher/'
             }
         };
         websocket.send(JSON.stringify(json));
