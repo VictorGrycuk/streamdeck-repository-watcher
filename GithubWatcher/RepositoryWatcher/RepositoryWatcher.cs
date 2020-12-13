@@ -1,7 +1,9 @@
 ﻿using BarRaider.SdTools;
 using Newtonsoft.Json.Linq;
 using RepositoryWatcher.Models;
+using RepositoryWatcher.Properties;
 using System;
+using System.Drawing;
 using System.Timers;
 
 namespace RepositoryWatcher
@@ -11,7 +13,8 @@ namespace RepositoryWatcher
     {
         private readonly PluginSettings settings;
         private readonly Timer Timer;
-        private DateTime dateTime = DateTime.Now;
+        private DateTime initialDateOffset = DateTime.Now;
+        private DateTime dateTime;
         private IWatcher watcher;
 
         public RepositoryWatcher(SDConnection connection, InitialPayload payload) : base(connection, payload)
@@ -30,7 +33,9 @@ namespace RepositoryWatcher
         {
             try
             {
-                var image = watcher.GetImage(dateTime);
+                var processing = (Image)Resources.ResourceManager.GetObject("processing");
+                Connection.SetImageAsync(processing).Wait();
+                var image = watcher.GetImage(initialDateOffset);
                 Connection.SetImageAsync(image);
             }
             catch (Exception ex)
@@ -47,20 +52,7 @@ namespace RepositoryWatcher
 
         public override void KeyPressed(KeyPayload payload)
         {
-            try
-            {
-                // It is necessary to "reset" the counter from when new items are counted
-                dateTime = DateTime.Now;
-                UpdateKey(null, null);
-
-                // We open the corresponding url
-                System.Diagnostics.Process.Start(watcher.GetUrl());
-            }
-            catch (Exception ex)
-            {
-                Logger.Instance.LogMessage(TracingLevel.ERROR, ex.Message);
-                Connection.ShowAlert().Wait();
-            }
+            dateTime = DateTime.Now;
         }
 
         public override void ReceivedSettings(ReceivedSettingsPayload payload)
@@ -70,7 +62,7 @@ namespace RepositoryWatcher
                 Tools.AutoPopulateSettings(settings, payload.Settings);
                 settings.UpdateSettingsEnum();
                 watcher = WatcherFactory.GetWatcher(settings);
-                dateTime = dateTime.Subtract(new TimeSpan(settings.InitialOffset, 0, 0, 0));
+                initialDateOffset = initialDateOffset.Subtract(new TimeSpan(settings.InitialOffset, 0, 0, 0));
                 
                 UpdateTimer();
                 SaveSettings();
@@ -96,7 +88,27 @@ namespace RepositoryWatcher
         
         public override void ReceivedGlobalSettings(ReceivedGlobalSettingsPayload payload) { }
 
-        public override void KeyReleased(KeyPayload payload) { }
+        public override void KeyReleased(KeyPayload payload) 
+        {
+            try
+            {
+                if ((DateTime.Now - dateTime).TotalSeconds > 2)
+                {
+                    // It is necessary to "reset" the counter from when new items are counted
+                    initialDateOffset = DateTime.Now;
+
+                    // We open the corresponding url
+                    System.Diagnostics.Process.Start(watcher.GetUrl());
+                }
+
+                UpdateKey(null, null);
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogMessage(TracingLevel.ERROR, ex.Message);
+                Connection.ShowAlert().Wait();
+            }
+        }
 
         public override void OnTick() { }
     }
