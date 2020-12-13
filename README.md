@@ -1,4 +1,7 @@
 # Repository Watcher for StreamDeck
+
+> Please refer to the [documentation](https://victorgrycuk.github.io/streamdeck-repository-watcher/) for the most recent information
+
 ## Description
 This is a plug in for [StreamDeck](https://www.elgato.com/en/gaming/stream-deck) that will monitor the count of issues or pull request of a given GitHub repository.
 
