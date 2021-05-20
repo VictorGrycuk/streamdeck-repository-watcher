@@ -22,7 +22,6 @@ namespace RepositoryWatcher
                 ? PluginSettings.CreateDefaultSettings()
                 : payload.Settings.ToObject<PluginSettings>();
 
-            watcher = WatcherFactory.GetWatcher(settings);
             Timer = new Timer();
             Timer.AutoReset = true;
             Timer.Elapsed += new ElapsedEventHandler(UpdateKey);
