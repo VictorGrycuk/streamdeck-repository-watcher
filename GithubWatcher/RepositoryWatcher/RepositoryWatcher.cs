@@ -13,7 +13,6 @@ namespace RepositoryWatcher
     {
         private readonly PluginSettings settings;
         private readonly Timer Timer;
-        private DateTime initialDateOffset = DateTime.Now;
         private DateTime dateTime;
         private IWatcher watcher;
 
@@ -35,7 +34,7 @@ namespace RepositoryWatcher
             {
                 var processing = (Image)Resources.ResourceManager.GetObject("processing");
                 Connection.SetImageAsync(processing).Wait();
-                var image = watcher.GetImage(initialDateOffset);
+                var image = watcher.GetImage();
                 Connection.SetImageAsync(image);
             }
             catch (Exception ex)
@@ -62,7 +61,6 @@ namespace RepositoryWatcher
                 Tools.AutoPopulateSettings(settings, payload.Settings);
                 settings.UpdateSettingsEnum();
                 watcher = WatcherFactory.GetWatcher(settings);
-                initialDateOffset = initialDateOffset.Subtract(new TimeSpan(settings.InitialOffset, 0, 0, 0));
                 
                 UpdateTimer();
                 SaveSettings();
@@ -94,9 +92,6 @@ namespace RepositoryWatcher
             {
                 if ((DateTime.Now - dateTime).TotalSeconds > 2)
                 {
-                    // It is necessary to "reset" the counter from when new items are counted
-                    initialDateOffset = DateTime.Now;
-
                     // We open the corresponding url
                     System.Diagnostics.Process.Start(watcher.GetUrl());
                 }

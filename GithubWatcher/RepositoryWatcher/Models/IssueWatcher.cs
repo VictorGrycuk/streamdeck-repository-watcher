@@ -9,7 +9,7 @@ namespace RepositoryWatcher.Models
     {
         public IssueWatcher(PluginSettings settings) : base(settings) { }
 
-        private int GetResult(DateTimeOffset dateTimeOffset)
+        private int GetResult()
         {
             var items = FluentGitHubAPI
                     .WithCredentials(Settings.Token)
@@ -22,7 +22,6 @@ namespace RepositoryWatcher.Models
                         .WithMentionedUser(Settings.MentionedUser)
                         .WithMilestone(Settings.MentionedUser)
                         .WithState(Settings.State)
-                        .Since(dateTimeOffset)
                         .WithPageCount(Settings.PageCount)
                         .WithPageSize(Settings.PageSize)
                         .WithStartPage(Settings.StartPage)
@@ -33,9 +32,9 @@ namespace RepositoryWatcher.Models
             return items.Count;
         }
 
-        public Bitmap GetImage(DateTimeOffset dateTimeOffset)
+        public Bitmap GetImage()
         {
-            var result = GetResult(dateTimeOffset);
+            var result = GetResult();
             var img = SetResultAndDescription(result, GetDescription(result));
 
             return img;

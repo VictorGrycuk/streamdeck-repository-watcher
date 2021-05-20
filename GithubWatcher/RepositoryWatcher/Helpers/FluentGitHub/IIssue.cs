@@ -11,7 +11,6 @@ namespace RepositoryWatcher.Helpers.FluentGitHub
         IWithIssueOptions FilteredBy(IssueFilter issueFilter);
         IWithIssueOptions WithMentionedUser(string mentionedUser);
         IWithIssueOptions WithMilestone(string milestone);
-        IWithIssueOptions Since(DateTimeOffset since);
         IWithIssueOptions SortBy(IssueSort sortProperty);
         IWithIssueOptions WithSortDirection(SortDirection direction);
         IWithIssueOptions WithState(ItemStateFilter state);
