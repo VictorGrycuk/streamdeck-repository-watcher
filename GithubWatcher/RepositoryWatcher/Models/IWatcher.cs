@@ -5,7 +5,7 @@ namespace RepositoryWatcher.Models
 {
     interface IWatcher
     {
-        Bitmap GetImage(DateTimeOffset dateTimeOffset);
+        Bitmap GetImage();
         string GetUrl();
     }
 }

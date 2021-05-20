@@ -21,9 +21,6 @@ namespace RepositoryWatcher
         [JsonProperty(PropertyName = "interval")]
         public int Interval { get; set; }
 
-        [JsonProperty(PropertyName = "initialOffset")]
-        public int InitialOffset { get; set; }
-
         [JsonProperty(PropertyName = "isEnabled")]
         public bool IsEnabled { get; set; }
 
