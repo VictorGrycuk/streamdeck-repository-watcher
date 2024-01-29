@@ -155,7 +155,6 @@ x => x.UpdatedAt > DateTime.Now.Subtract(new TimeSpan(1, 0, 0));
 
 - **[KeePass for StreamDeck](https://github.com/VictorGrycuk/StreamDeck-KeePass)**
 - **[Color Picker](https://github.com/VictorGrycuk/streamdeck-color-picker)**
-- **[Magnifier](https://github.com/VictorGrycuk/streamdeck-magnifier)**
 
 ---
 The icons are modified version of *Repository iOS Glyph* and *Repository Fluent* at [Icon8](https://icons8.com/).
