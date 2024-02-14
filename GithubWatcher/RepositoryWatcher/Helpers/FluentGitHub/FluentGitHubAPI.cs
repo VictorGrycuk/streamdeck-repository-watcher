@@ -97,14 +97,6 @@ namespace RepositoryWatcher.Helpers.FluentGitHub
             return this;
         }
 
-        public IWithIssueOptions Since(DateTimeOffset since)
-        {
-            if (since != null)
-                repositoryIssueRequest.Since = since;
-
-            return this;
-        }
-
         public IWithIssueOptions SortBy(IssueSort property)
         {
             repositoryIssueRequest.SortProperty = property;
